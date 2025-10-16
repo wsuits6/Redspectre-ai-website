@@ -269,64 +269,120 @@
       background: rgba(255, 255, 255, 0.1);
       transform: translateY(-3px);
     }
+/* Terminal Demo - Kali Linux Style */
+.terminal-demo {
+  background: #0c0c35;
+  border: 1px solid #1a1a4d;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
 
-    /* Terminal Demo */
-    .terminal-demo {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    }
+.terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1e1e3f;
+  padding: 10px 14px;
+  border-bottom: 1px solid #2a2a5a;
+}
 
-    .terminal-header {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid var(--glass-border);
-    }
+.terminal-title {
+  font-size: 13px;
+  color: #e0e0e0;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+}
 
-    .terminal-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
+.terminal-controls {
+  display: flex;
+  gap: 8px;
+}
 
-    .dot-red { background: #ff5f57; }
-    .dot-yellow { background: #ffbd2e; }
-    .dot-green { background: #28ca42; }
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
 
-    .terminal-body {
-      font-family: 'Courier New', monospace;
-      font-size: 14px;
-      line-height: 1.6;
-      color: #00ff88;
-    }
+.dot-minimize { 
+  background: #fbc531;
+}
 
-    .terminal-line {
-      margin-bottom: 8px;
-    }
+.dot-maximize { 
+  background: #4cd137;
+}
 
-    .terminal-prompt {
-      color: var(--primary-cyan);
-      font-weight: bold;
-    }
+.dot-close { 
+  background: #e84118;
+}
 
-    .terminal-cursor {
-      display: inline-block;
-      width: 8px;
-      height: 16px;
-      background: #00ff88;
-      animation: blink 1s infinite;
-    }
+.terminal-body {
+  padding: 20px;
+  background: #000;
+  font-family: 'Courier New', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 350px;
+  color: #f8f8f2;
+}
 
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
+.terminal-line {
+  margin-bottom: 2px;
+  display: block;
+}
 
+.terminal-prompt {
+  color: #6c71c4;
+  font-weight: bold;
+}
+
+.kali-user {
+  color: #50fa7b;
+  font-weight: bold;
+}
+
+.kali-path {
+  color: #8be9fd;
+  font-weight: bold;
+}
+
+.terminal-command {
+  color: #f8f8f2;
+}
+
+.terminal-output {
+  color: #8be9fd;
+  margin-left: 0;
+}
+
+.terminal-success {
+  color: #50fa7b;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 18px;
+  background: #50fa7b;
+  animation: blink 1s infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .terminal-body {
+    font-size: 12px;
+    padding: 15px;
+    min-height: 300px;
+    text-align: left;
+  }
+}
     /* Features Section */
     .features {
       padding: 120px 0;
