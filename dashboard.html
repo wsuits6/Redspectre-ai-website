@@ -62,14 +62,14 @@
     <!-- Top Bar -->
     <div class="top-bar">
       <div class="welcome-text">
-        <h1>Welcome back, Pentester 👋</h1>
+        <h1>Welcome back, <span id="userName">[USER_NAME]</span> 👋</h1>
         <p>Here's what's happening with your pentests today</p>
       </div>
       <div class="user-info">
-        <div class="user-avatar">RS</div>
+        <div class="user-avatar" id="userAvatar">[INITIALS]</div>
         <div>
-          <div style="font-weight: 600; font-size: 14px;">RedSpectre User</div>
-          <div style="font-size: 12px; color: var(--text-secondary);">Pro Plan</div>
+          <div style="font-weight: 600; font-size: 14px;" id="userFullName">[USER_FULL_NAME]</div>
+          <div style="font-size: 12px; color: var(--text-secondary);" id="userPlan">[PLAN_TYPE]</div>
         </div>
       </div>
     </div>
@@ -81,32 +81,32 @@
           <span class="stat-title">Active Projects</span>
           <span class="stat-icon">📁</span>
         </div>
-        <div class="stat-value">12</div>
-        <div class="stat-change">↑ 3 from last month</div>
+        <div class="stat-value" id="activeProjectsCount">[COUNT]</div>
+        <div class="stat-change" id="activeProjectsChange">[CHANGE_TEXT]</div>
       </div>
       <div class="stat-card">
         <div class="stat-header">
           <span class="stat-title">Reports Generated</span>
           <span class="stat-icon">📄</span>
         </div>
-        <div class="stat-value">47</div>
-        <div class="stat-change">↑ 12 from last month</div>
+        <div class="stat-value" id="reportsCount">[COUNT]</div>
+        <div class="stat-change" id="reportsChange">[CHANGE_TEXT]</div>
       </div>
       <div class="stat-card">
         <div class="stat-header">
           <span class="stat-title">Vulnerabilities Found</span>
           <span class="stat-icon">🎯</span>
         </div>
-        <div class="stat-value">234</div>
-        <div class="stat-change">↑ 45 from last month</div>
+        <div class="stat-value" id="vulnCount">[COUNT]</div>
+        <div class="stat-change" id="vulnChange">[CHANGE_TEXT]</div>
       </div>
       <div class="stat-card">
         <div class="stat-header">
           <span class="stat-title">Hours Saved</span>
           <span class="stat-icon">⏱️</span>
         </div>
-        <div class="stat-value">89</div>
-        <div class="stat-change">With AI automation</div>
+        <div class="stat-value" id="hoursSaved">[COUNT]</div>
+        <div class="stat-change" id="hoursSavedChange">[CHANGE_TEXT]</div>
       </div>
     </div>
 
@@ -119,36 +119,19 @@
           <button class="btn-small">View All</button>
         </div>
         <div id="projectList">
+          <!-- Project items will be inserted here dynamically -->
+          <!-- Example structure for each project:
           <div class="project-item">
             <div class="project-info">
-              <h4>E-Commerce Platform Pentest</h4>
+              <h4>[PROJECT_NAME]</h4>
               <div class="project-meta">
-                <span>🕐 2 hours ago</span>
-                <span>📊 15 findings</span>
+                <span>🕐 [TIME_AGO]</span>
+                <span>📊 [FINDINGS_COUNT] findings</span>
               </div>
             </div>
-            <span class="status-badge status-active">Active</span>
+            <span class="status-badge status-[active/completed/pending]">[STATUS]</span>
           </div>
-          <div class="project-item">
-            <div class="project-info">
-              <h4>Banking API Security Assessment</h4>
-              <div class="project-meta">
-                <span>🕐 1 day ago</span>
-                <span>📊 23 findings</span>
-              </div>
-            </div>
-            <span class="status-badge status-completed">Completed</span>
-          </div>
-          <div class="project-item">
-            <div class="project-info">
-              <h4>Healthcare Portal Review</h4>
-              <div class="project-meta">
-                <span>🕐 3 days ago</span>
-                <span>📊 8 findings</span>
-              </div>
-            </div>
-            <span class="status-badge status-active">Active</span>
-          </div>
+          -->
         </div>
       </div>
 
@@ -158,34 +141,16 @@
           <h3 class="card-title">Recent Activity</h3>
         </div>
         <div id="activityFeed">
+          <!-- Activity items will be inserted here dynamically -->
+          <!-- Example structure for each activity:
           <div class="activity-item">
-            <div class="activity-icon">🤖</div>
+            <div class="activity-icon">[EMOJI_ICON]</div>
             <div class="activity-content">
-              <h4>AI Report Generated</h4>
-              <p class="activity-time">5 minutes ago</p>
+              <h4>[ACTIVITY_TITLE]</h4>
+              <p class="activity-time">[TIME_AGO]</p>
             </div>
           </div>
-          <div class="activity-item">
-            <div class="activity-icon">🎯</div>
-            <div class="activity-content">
-              <h4>Critical Vuln Detected</h4>
-              <p class="activity-time">1 hour ago</p>
-            </div>
-          </div>
-          <div class="activity-item">
-            <div class="activity-icon">📄</div>
-            <div class="activity-content">
-              <h4>Report Exported</h4>
-              <p class="activity-time">3 hours ago</p>
-            </div>
-          </div>
-          <div class="activity-item">
-            <div class="activity-icon">💻</div>
-            <div class="activity-content">
-              <h4>New Scan Started</h4>
-              <p class="activity-time">5 hours ago</p>
-            </div>
-          </div>
+          -->
         </div>
       </div>
     </div>
@@ -234,10 +199,111 @@
       }
     });
 
+    // DATA POPULATION FUNCTIONS
+    // Call these functions with your actual data from the backend
+
+    function populateUserInfo(data) {
+      document.getElementById('userName').textContent = data.firstName || '[USER_NAME]';
+      document.getElementById('userFullName').textContent = data.fullName || '[USER_FULL_NAME]';
+      document.getElementById('userAvatar').textContent = data.initials || '[INITIALS]';
+      document.getElementById('userPlan').textContent = data.plan || '[PLAN_TYPE]';
+    }
+
+    function populateStats(data) {
+      document.getElementById('activeProjectsCount').textContent = data.activeProjects || '[COUNT]';
+      document.getElementById('activeProjectsChange').textContent = data.activeProjectsChange || '[CHANGE_TEXT]';
+      
+      document.getElementById('reportsCount').textContent = data.reports || '[COUNT]';
+      document.getElementById('reportsChange').textContent = data.reportsChange || '[CHANGE_TEXT]';
+      
+      document.getElementById('vulnCount').textContent = data.vulnerabilities || '[COUNT]';
+      document.getElementById('vulnChange').textContent = data.vulnerabilitiesChange || '[CHANGE_TEXT]';
+      
+      document.getElementById('hoursSaved').textContent = data.hoursSaved || '[COUNT]';
+      document.getElementById('hoursSavedChange').textContent = data.hoursSavedChange || '[CHANGE_TEXT]';
+    }
+
+    function populateProjects(projects) {
+      const projectList = document.getElementById('projectList');
+      projectList.innerHTML = '';
+      
+      projects.forEach(project => {
+        const projectItem = `
+          <div class="project-item">
+            <div class="project-info">
+              <h4>${project.name}</h4>
+              <div class="project-meta">
+                <span>🕐 ${project.timeAgo}</span>
+                <span>📊 ${project.findingsCount} findings</span>
+              </div>
+            </div>
+            <span class="status-badge status-${project.status.toLowerCase()}">${project.status}</span>
+          </div>
+        `;
+        projectList.innerHTML += projectItem;
+      });
+    }
+
+    function populateActivity(activities) {
+      const activityFeed = document.getElementById('activityFeed');
+      activityFeed.innerHTML = '';
+      
+      activities.forEach(activity => {
+        const activityItem = `
+          <div class="activity-item">
+            <div class="activity-icon">${activity.icon}</div>
+            <div class="activity-content">
+              <h4>${activity.title}</h4>
+              <p class="activity-time">${activity.timeAgo}</p>
+            </div>
+          </div>
+        `;
+        activityFeed.innerHTML += activityItem;
+      });
+    }
+
+    // EXAMPLE USAGE:
+    // When you fetch data from your backend, call these functions like:
+    
+    // populateUserInfo({
+    //   firstName: 'John',
+    //   fullName: 'John Doe',
+    //   initials: 'JD',
+    //   plan: 'Pro Plan'
+    // });
+
+    // populateStats({
+    //   activeProjects: 12,
+    //   activeProjectsChange: '↑ 3 from last month',
+    //   reports: 47,
+    //   reportsChange: '↑ 12 from last month',
+    //   vulnerabilities: 234,
+    //   vulnerabilitiesChange: '↑ 45 from last month',
+    //   hoursSaved: 89,
+    //   hoursSavedChange: 'With AI automation'
+    // });
+
+    // populateProjects([
+    //   {
+    //     name: 'E-Commerce Platform Pentest',
+    //     timeAgo: '2 hours ago',
+    //     findingsCount: 15,
+    //     status: 'Active'
+    //   }
+    // ]);
+
+    // populateActivity([
+    //   {
+    //     icon: '🤖',
+    //     title: 'AI Report Generated',
+    //     timeAgo: '5 minutes ago'
+    //   }
+    // ]);
+
     // Simulated data updates
     function updateStats() {
-      // In a real app, this would fetch from your backend
-      console.log('Stats updated');
+      // Fetch from your backend API and call populate functions
+      console.log('Ready to fetch and update stats');
     }
 
     setInterval(updateStats, 30000); // Update every 30 seconds
